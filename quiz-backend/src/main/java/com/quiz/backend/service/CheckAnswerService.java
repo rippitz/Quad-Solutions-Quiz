@@ -1,5 +1,6 @@
 package com.quiz.backend.service;
 
+import com.quiz.backend.dao.QuizMemoryDataStore;
 import com.quiz.backend.model.CheckAnswersRequest;
 import com.quiz.backend.model.CheckAnswersResponse;
 import com.quiz.backend.model.QuizQuestion;
@@ -12,14 +13,14 @@ import java.util.stream.Collectors;
 @Service
 public class CheckAnswerService {
 
-    private final QuizDataStore quizDataStore;
+    private final QuizMemoryDataStore quizMemoryDataStore;
 
-    public CheckAnswerService(QuizDataStore quizDataStore) {
-        this.quizDataStore = quizDataStore;
+    public CheckAnswerService(QuizMemoryDataStore quizMemoryDataStore) {
+        this.quizMemoryDataStore = quizMemoryDataStore;
     }
 
     public CheckAnswersResponse checkAnswers(CheckAnswersRequest request) {
-        List<QuizQuestion> quizQuestions = quizDataStore.getQuizQuestions();
+        List<QuizQuestion> quizQuestions = quizMemoryDataStore.getQuizQuestions();
 
         List<CheckAnswersResponse.AnswerResult> results = request.getQuestions().stream()
                 .map(answeredQuestion -> {

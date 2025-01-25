@@ -1,24 +1,25 @@
 package com.quiz.backend.service;
 
+import com.quiz.backend.dao.QuizMemoryDataStore;
 import com.quiz.backend.model.QuizQuestion;
 import com.quiz.backend.model.TriviaQuestion;
 import org.apache.commons.text.StringEscapeUtils;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class QuizService {
 
     private final TriviaApiClient triviaApiClient;
-    private final QuizDataStore quizDataStore;
+    private final QuizMemoryDataStore quizMemoryDataStore;
 
-    public QuizService(TriviaApiClient triviaApiClient, QuizDataStore quizDataStore) {
+    public QuizService(TriviaApiClient triviaApiClient, QuizMemoryDataStore quizMemoryDataStore) {
         this.triviaApiClient = triviaApiClient;
-        this.quizDataStore = quizDataStore;
+        this.quizMemoryDataStore = quizMemoryDataStore;
     }
 
     public List<QuizQuestion> fetchAndPrepareQuestions() {
@@ -50,7 +51,7 @@ public class QuizService {
             return quiz;
         }).collect(Collectors.toList());
 
-        quizDataStore.setQuizQuestions(preparedQuestions);
+        quizMemoryDataStore.setQuizQuestions(preparedQuestions);
         return preparedQuestions;
     }
 
