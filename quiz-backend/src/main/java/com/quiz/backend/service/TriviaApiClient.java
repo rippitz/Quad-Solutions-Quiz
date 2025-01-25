@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -77,9 +78,19 @@ public class TriviaApiClient {
 
     public void resetSessionToken() {
         if (sessionToken != null) {
-            String url = BASE_URL + TOKEN_API + "?command=reset&token=" + sessionToken;
-            restTemplate.getForObject(url, String.class);
+            URI resetUri = buildResetTokenUri(sessionToken);
+            restTemplate.getForObject(resetUri, String.class);
         }
-        sessionToken = getSessionToken();
+
     }
+
+    private URI buildResetTokenUri(String sessionToken) {
+        return UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                .path(TOKEN_API)
+                .queryParam("command", "reset")
+                .queryParam("token", sessionToken)
+                .build()
+                .toUri();
+    }
+
 }
