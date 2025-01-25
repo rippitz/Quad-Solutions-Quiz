@@ -6,8 +6,7 @@ import com.quiz.backend.model.CheckAnswersResponse;
 import com.quiz.backend.model.QuizQuestion;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,27 +19,28 @@ public class CheckAnswerService {
     }
 
     public CheckAnswersResponse checkAnswers(CheckAnswersRequest request) {
+        // Step 1: Create a HashMap for quick lookup
         List<QuizQuestion> quizQuestions = quizMemoryDataStore.getQuizQuestions();
+        Map<UUID, QuizQuestion> questionMap = quizQuestions.stream()
+                .collect(Collectors.toMap(QuizQuestion::getId, quizQuestion -> quizQuestion));
+
+
 
         List<CheckAnswersResponse.AnswerResult> results = request.getQuestions().stream()
                 .map(answeredQuestion -> {
-                    QuizQuestion quizQuestion = quizQuestions.stream()
-                            .filter(q -> q.getId().equals(answeredQuestion.getId()))
-                            .findFirst()
-                            .orElse(null);
+                    QuizQuestion quizQuestion = questionMap.get(answeredQuestion.getId());
 
-                    if (quizQuestion != null) {
-                        boolean isCorrect = answeredQuestion.getSelectedAnswerIndex() == quizQuestion.getCorrectAnswerIndex();
-
-                        return new CheckAnswersResponse.AnswerResult(
-                                answeredQuestion.getId(),
-                                answeredQuestion.getSelectedAnswerIndex(),
-                                isCorrect,
-                                quizQuestion.getCorrectAnswerIndex()
-                        );
-                    } else {
+                    if (quizQuestion == null) {
                         return null;
                     }
+
+                    boolean isCorrect = answeredQuestion.getSelectedAnswerIndex() == quizQuestion.getCorrectAnswerIndex();
+                    return new CheckAnswersResponse.AnswerResult(
+                            answeredQuestion.getId(),
+                            answeredQuestion.getSelectedAnswerIndex(),
+                            isCorrect,
+                            quizQuestion.getCorrectAnswerIndex()
+                    );
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
