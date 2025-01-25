@@ -1,0 +1,22 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+
+mat-card {
+  max-width: 750px;
+  width: 100%;
+  padding: 20px;
+  margin:20px;
+  background-color: rgb(142, 174, 187);
+}

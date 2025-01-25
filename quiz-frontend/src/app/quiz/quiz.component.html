@@ -1,0 +1,48 @@
+<div *ngIf="questions && !results">
+  <div class="quiz-container">
+    <mat-card *ngFor="let question of questions; let i = index">
+      <mat-card-header>
+        <mat-card-title>{{ question.question }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group [(ngModel)]="selectedAnswers[i]">
+          <div *ngFor="let answer of question.answers; let j = index" class="answer-option">
+            <mat-radio-button [value]="j">
+              {{ answer }}
+            </mat-radio-button>
+          </div>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="primary" (click)="submitAnswers()">Submit Answers</button>
+  </div>
+</div>
+
+<div *ngIf="!questions">
+  <p>loading...</p>
+</div>
+
+<div *ngIf="results && questions" class="quiz-container"> <div class="results-container">
+  <h2 style="text-align: center">Your Score: {{ score }} out of 100</h2>
+
+  <mat-card *ngFor="let result of results; let i = index">
+    <mat-card-header>
+      <mat-card-title>{{ questions[i].question }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p [ngStyle]="{'color': result.correct ? 'green' : 'red'}">
+        Your answer: {{ questions[i].answers[result.selectedAnswerIndex] }}
+        <span *ngIf="!result.correct"> (Incorrect)</span>
+      </p>
+      <p *ngIf="!result.correct && result.correctAnswerIndex !== undefined">
+        Correct answer: {{ questions[i].answers[result.correctAnswerIndex] }}
+      </p>
+      <p *ngIf="!result.correct && result.correctAnswerIndex === undefined">
+        Correct answer: Not Available
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-raised-button color="primary" (click)="returnToStart()">Return to start</button>
+</div>
+</div>

@@ -1,0 +1,12 @@
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/QuizBackendApplication.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/config/CorsConfig.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/controller/QuizController.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/model/CheckAnswersRequest.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/model/CheckAnswersResponse.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/model/QuizQuestion.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/model/TriviaQuestion.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/model/TriviaResponse.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/service/CheckAnswerService.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/service/QuizDataStore.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/service/QuizService.java
+/home/wouter/Projects/Quad-Solutions-quiz/quiz-backend/src/main/java/com/quiz/backend/service/TriviaApiClient.java

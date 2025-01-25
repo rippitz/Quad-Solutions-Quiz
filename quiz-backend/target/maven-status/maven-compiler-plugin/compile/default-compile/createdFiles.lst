@@ -1,0 +1,14 @@
+com/quiz/backend/model/QuizQuestion.class
+com/quiz/backend/model/TriviaResponse.class
+com/quiz/backend/service/QuizService.class
+com/quiz/backend/model/CheckAnswersResponse$AnswerResult.class
+com/quiz/backend/service/CheckAnswerService.class
+com/quiz/backend/QuizBackendApplication.class
+com/quiz/backend/service/QuizDataStore.class
+com/quiz/backend/model/CheckAnswersRequest$AnsweredQuestion.class
+com/quiz/backend/model/TriviaQuestion.class
+com/quiz/backend/config/CorsConfig.class
+com/quiz/backend/controller/QuizController.class
+com/quiz/backend/service/TriviaApiClient.class
+com/quiz/backend/model/CheckAnswersResponse.class
+com/quiz/backend/model/CheckAnswersRequest.class
