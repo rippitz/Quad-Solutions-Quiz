@@ -19,7 +19,6 @@ public class CheckAnswerService {
     }
 
     public CheckAnswersResponse checkAnswers(CheckAnswersRequest request) {
-        // Step 1: Create a HashMap for quick lookup
         List<QuizQuestion> quizQuestions = quizMemoryDataStore.getQuizQuestions();
         Map<UUID, QuizQuestion> questionMap = quizQuestions.stream()
                 .collect(Collectors.toMap(QuizQuestion::getId, quizQuestion -> quizQuestion));
