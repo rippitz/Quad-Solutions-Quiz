@@ -15,6 +15,7 @@ public class TriviaApiClient {
     private static final String QUESTIONS_API = "/api.php";
     private static final String TOKEN_API = "/api_token.php";
     private static final int MAX_RETRIES = 3;
+    private static final int SLEEP_DURATION_IN_MS = 5000;
 
     private final RestTemplate restTemplate = new RestTemplate();
     private String sessionToken;
@@ -60,7 +61,7 @@ public class TriviaApiClient {
                         break;
                     case 5: // Rate Limit Exceeded
                         try {
-                            Thread.sleep(5000); // Sleep for 5 seconds before retrying
+                            Thread.sleep(SLEEP_DURATION_IN_MS); // Sleep for 5 seconds before retrying
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                         }

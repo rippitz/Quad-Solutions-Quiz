@@ -16,6 +16,8 @@ public class QuizService {
 
     private final TriviaApiClient triviaApiClient;
     private final QuizMemoryDataStore quizMemoryDataStore;
+    private final String MultipleChoice = "multiple";
+    private final String BooleanChoice = "boolean";
 
     public QuizService(TriviaApiClient triviaApiClient, QuizMemoryDataStore quizMemoryDataStore) {
         this.triviaApiClient = triviaApiClient;
@@ -39,9 +41,9 @@ public class QuizService {
                     .collect(Collectors.toList());
             answers.add(unescapeHtml(trivia.getCorrectAnswer()));
 
-            if ("multiple".equals(trivia.getType())) {
+            if (MultipleChoice.equals(trivia.getType())) {
                 Collections.shuffle(answers);
-            } else if ("boolean".equals(trivia.getType())) {
+            } else if (BooleanChoice.equals(trivia.getType())) {
                 answers = List.of("True", "False");
             }
 
