@@ -71,7 +71,7 @@ public class TriviaApiClient {
             }
         }
 
-        throw new RuntimeException("Failed to fetch trivia questions after " + MAX_RETRIES + " attempts.");
+        throw new RuntimeException(String.format("Failed to fetch trivia questions after %d attempts.", MAX_RETRIES));
     }
 
     public void resetSessionToken() {
