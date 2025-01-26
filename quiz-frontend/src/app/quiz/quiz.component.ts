@@ -73,7 +73,7 @@ export class QuizComponent {
       selectedAnswerIndex: this.selectedAnswers[index]
     }));
 
-    this.http.post<CheckAnswersResponse>('http://localhost:8080/api/check-answers', { questions: answersToCheck }).subscribe(response => {
+    this.http.post<CheckAnswersResponse>('http://quiz-backend:8080/api/check-answers', { questions: answersToCheck }).subscribe(response => {
       this.results = response.results;
       this.score = this.results.filter(result => result.correct).length * 10;
       this.showResults = true;
