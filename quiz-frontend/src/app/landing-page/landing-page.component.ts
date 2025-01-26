@@ -27,7 +27,7 @@ export class LandingPageComponent {
   constructor(private router: Router, private http: HttpClient) { }
 
   startQuiz() {
-    this.questions$ = this.http.get<Question[]>('http://localhost:8080/api/questions');
+    this.questions$ = this.http.get<Question[]>('http://quiz-backend:8080/api/questions');
 
     this.questions$.subscribe(questions => {
       this.router.navigate(['/quiz'], { state: { questions: questions } });
